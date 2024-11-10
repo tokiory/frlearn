@@ -1,0 +1,27 @@
+---
+import type { Session } from "@/types/session.types";
+import SessionPeriod from "./session-period.astro";
+
+interface Props extends Session {
+  class?: string;
+}
+
+const { id, name, description, date, class: className } = Astro.props;
+---
+
+<a href={`/session/${id}`} class="block">
+  <div
+    class:list={[
+      "transition border hover:border-orange-300 p-4 shadow-sm hover:shadow-orange-100 rounded-md",
+      className,
+    ]}
+  >
+    <div class="font-semibold">
+      {name}
+    </div>
+    <div class="mt-1 text-sm">
+      {description}
+    </div>
+    <SessionPeriod date={date} />
+  </div>
+</a>

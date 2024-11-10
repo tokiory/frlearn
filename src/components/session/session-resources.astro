@@ -1,0 +1,27 @@
+---
+import type { Link as LinkType } from "@/types/link.types";
+import Link from "#/link.astro";
+import Keyword from "#/keyword.astro";
+
+interface Props {
+  resources: LinkType[];
+  class?: string;
+}
+
+const { resources, class: className } = Astro.props;
+---
+
+<div class={className}>
+  <Keyword> Полезные ссылки: </Keyword>
+  <ul class="flex flex-col md:flex-row gap-1 md:gap-4">
+    {
+      resources.map((resource) => (
+        <li>
+          <Link target="_blank" href={resource.url}>
+            {resource.name}
+          </Link>
+        </li>
+      ))
+    }
+  </ul>
+</div>

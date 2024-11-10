@@ -1,0 +1,38 @@
+---
+import { sessions } from "@/data/sessions";
+import Layout from "@/layouts/Layout.astro";
+import type { Day as DayType } from "@/data/day";
+import SessionResources from "@@/session/session-resources.astro";
+import Day from "@@/day/day.astro";
+import Title from "#/title.astro";
+import GoHome from "@@/navigation/go-home.astro";
+
+export async function getStaticPaths() {
+  return sessions.map(({ id, name, description, resources }) => {
+    return {
+      params: { id },
+      props: { name, description, resources },
+    };
+  });
+}
+
+const dayMap = {
+  "winter-qa-js": import("@/data/day/winter-qa-js"),
+};
+
+const { default: days } = (await dayMap[
+  Astro.params.id as keyof typeof dayMap
+]) as { default: DayType[] };
+
+const { name, description, resources } = Astro.props;
+---
+
+<Layout title={name}>
+  <GoHome />
+  <Title class="mt-4">{name}</Title>
+  <p class="mt-2">{description}</p>
+  {resources && <SessionResources class="mt-4" resources={resources} />}
+  <div class="flex mt-4 flex-col gap-4">
+    {days.map((day) => <Day {...day} />)}
+  </div>
+</Layout>

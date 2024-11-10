@@ -1,0 +1,45 @@
+---
+import type { Day } from "@/data/day";
+import DayHomework from "./day-homework.astro";
+import DayMindmap from "./day-mindmap.astro";
+import DayReadlist from "./day-readlist.astro";
+import TextInfo from "#/text-info.astro";
+import DayFuture from "./day-future.astro";
+
+interface Props extends Day {
+  class?: string;
+}
+
+const {
+  class: className,
+  homework,
+  mindmap,
+  description,
+  references,
+  title,
+  date,
+  future,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "relative border p-4 shadow-sm rounded-md",
+    future && "border-dashed",
+    className,
+  ]}
+>
+  {future && <DayFuture />}
+  <TextInfo>
+    Дата: {date}
+  </TextInfo>
+  <div class="text-xl font-semibold">
+    {title}
+  </div>
+  <div class="mt-1">
+    {description}
+  </div>
+  {mindmap && <DayMindmap mindmap={mindmap} class="mt-2" />}
+  {homework && <DayHomework homework={homework} class="mt-2" />}
+  <DayReadlist references={references} class="mt-2" />
+</div>

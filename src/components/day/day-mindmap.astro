@@ -1,0 +1,17 @@
+---
+import type { Day } from "@/data/day";
+import Keyword from "#/keyword.astro";
+import Link from "#/link.astro";
+
+interface Props {
+  class?: string;
+  mindmap: NonNullable<Day["mindmap"]>;
+}
+
+const { class: className, mindmap } = Astro.props;
+---
+
+<div class={className}>
+  <Keyword>🗺️ Карта дня</Keyword>:&nbsp;
+  <Link target="_blank" href={mindmap}> Excalidraw </Link>
+</div>

@@ -1,0 +1,29 @@
+---
+import type { Day } from "@/data/day";
+import UnorderedList from "#/unordered-list.astro";
+import UnorderedListItem from "#/unordered-list-item.astro";
+import Keyword from "#/keyword.astro";
+import Link from "#/link.astro";
+
+interface Props {
+  class?: string;
+  references: NonNullable<Day["references"]>;
+}
+
+const { class: className, references } = Astro.props;
+---
+
+<div class={className}>
+  <Keyword>📚 Что почитать?</Keyword>
+  <UnorderedList>
+    {
+      references.map((ref) => (
+        <UnorderedListItem>
+          <Link target="_blank" href={ref.url}>
+            {ref.name}
+          </Link>
+        </UnorderedListItem>
+      ))
+    }
+  </UnorderedList>
+</div>

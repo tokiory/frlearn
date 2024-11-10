@@ -1,0 +1,22 @@
+---
+import type { SessionPeriod } from "@/types/session.types";
+
+interface Props {
+  date: SessionPeriod;
+}
+
+const { date } = Astro.props;
+
+const dateLocalizer = new Intl.DateTimeFormat("ru-RU", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const fromDate = dateLocalizer.format(date.from);
+const toDate = date.to && dateLocalizer.format(date.to);
+---
+
+<div class="text-sm text-stone-500">
+  {fromDate} — {toDate ?? "Текущее время"}
+</div>

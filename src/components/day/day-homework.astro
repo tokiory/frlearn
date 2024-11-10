@@ -1,0 +1,20 @@
+---
+import type { Day } from "@/data/day";
+import Keyword from "#/keyword.astro";
+import UnorderedList from "#/unordered-list.astro";
+import UnorderedListItem from "#/unordered-list-item.astro";
+
+interface Props {
+  homework: NonNullable<Day["homework"]>;
+  class?: string;
+}
+
+const { homework, class: className } = Astro.props;
+---
+
+<div class={className}>
+  <Keyword>🎓 Домашнее задание</Keyword>
+  <UnorderedList>
+    {homework.map((hw) => <UnorderedListItem>{hw}</UnorderedListItem>)}
+  </UnorderedList>
+</div>

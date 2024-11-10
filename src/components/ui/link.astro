@@ -1,0 +1,14 @@
+---
+export interface Props {
+  class?: string;
+  href: string;
+  target?: string;
+}
+
+const { class: className, ...props } = Astro.props;
+---
+
+<a
+  class:list={["text-orange-500 transition hover:text-orange-600", className]}
+  {...props}><slot /></a
+>
