@@ -1,0 +1,26 @@
+  {
+    "id": "winter-qa-js",
+    "name": "Зимняя сессия QA по JavaScript",
+    "description": "Плавное введение в JS для тестировщиков",
+    "date": {
+      "from": "2024-11-01"
+    },
+    "resources": [
+      {
+        "name": "runjs.co",
+        "url": "https://runjs.co/"
+      },
+      {
+        "name": "RunJS App",
+        "url": "https://runjs.app/"
+      },
+      {
+        "name": "MDN",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+      },
+      {
+        "name": "Javascript Visualizer",
+        "url": "https://jsviz.klve.nl/"
+      }
+    ]
+  }

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {

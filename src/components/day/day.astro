@@ -1,10 +1,11 @@
 ---
-import type { Day } from "@/data/day";
+import type { Day } from "@/types/day.types";
 import DayHomework from "./day-homework.astro";
 import DayMindmap from "./day-mindmap.astro";
 import DayReadlist from "./day-readlist.astro";
 import TextInfo from "#/text-info.astro";
 import DayFuture from "./day-future.astro";
+import { useDateLocalization } from "@/hooks/usePeriodLocalization";
 
 interface Props extends Day {
   class?: string;
@@ -14,12 +15,13 @@ const {
   class: className,
   homework,
   mindmap,
-  description,
   references,
   title,
   date,
   future,
 } = Astro.props;
+
+const localizedDate = useDateLocalization(date);
 ---
 
 <div
@@ -31,13 +33,13 @@ const {
 >
   {future && <DayFuture />}
   <TextInfo>
-    Дата: {date}
+    Дата: {localizedDate}
   </TextInfo>
   <div class="text-xl font-semibold">
     {title}
   </div>
   <div class="mt-1">
-    {description}
+    <slot />
   </div>
   {mindmap && <DayMindmap mindmap={mindmap} class="mt-2" />}
   {homework && <DayHomework homework={homework} class="mt-2" />}

@@ -3,8 +3,10 @@ import Layout from "@/layouts/Layout.astro";
 import Title from "#/title.astro";
 import Subtitle from "#/subtitle.astro";
 import { Icon } from "@iconify/react";
-import { sessions } from "@/data/sessions";
 import Session from "@@/session/session.astro";
+import { useSessionCollection } from "@/hooks/useSessionCollection";
+
+const sessions = await useSessionCollection();
 ---
 
 <Layout title="FRLEARN">

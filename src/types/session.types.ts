@@ -1,14 +1,5 @@
-import type { Link } from "./link.types";
+import type { sessionSchema } from "@/content/config";
+import type { z } from "astro:content";
 
-export interface SessionPeriod {
-  from: Date;
-  to?: Date;
-}
-
-export interface Session {
-  id: string;
-  name: string;
-  description: string;
-  resources?: Link[];
-  date: SessionPeriod;
-}
+export type Session = z.infer<typeof sessionSchema>;
+export type SessionPeriod = Session["date"];

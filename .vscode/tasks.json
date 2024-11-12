@@ -7,6 +7,20 @@
 			"problemMatcher": [],
 			"label": "Development",
 			"detail": "astro dev"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"problemMatcher": [],
+			"label": "Build",
+			"detail": "astro build"
+		},
+		{
+			"type": "npm",
+			"script": "deploy",
+			"problemMatcher": [],
+			"label": "Deploy",
+			"detail": "Deploy on Vercel"
 		}
 	]
 }
