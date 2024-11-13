@@ -68,12 +68,53 @@ const { class: className, id } = Astro.props;
       @apply text-2xl md:text-xl font-semibold relative;
     }
 
+    :global(strong) {
+      @apply font-medium;
+    }
+
+    :global(ol) {
+      @apply pl-2 list-decimal list-inside;
+    }
+
+    :global(ol:not(:first-child)) {
+      @apply mt-2;
+    }
+
     :global(h1:not(:first-child)) {
       @apply mt-6;
     }
 
+    :global(p:not(:first-child)) {
+      @apply mt-2;
+    }
+
+    :global(blockquote) {
+      @apply border border-sky-300 text-sky-900 bg-sky-100 rounded-md p-2;
+    }
+
+    :global(blockquote:not(:first-child)) {
+      @apply mt-4;
+    }
+
+    :global(a) {
+      @apply text-orange-600 hover:text-orange-500;
+    }
+
     :global(h1::before) {
       content: "H1";
+      @apply inline-block mr-2 text-base text-stone-400;
+    }
+
+    :global(h2:not(:first-child)) {
+      @apply mt-4;
+    }
+
+    :global(h2) {
+      @apply text-xl md:text-lg font-medium relative;
+    }
+
+    :global(h2::before) {
+      content: "H2";
       @apply inline-block mr-2 text-base text-stone-400;
     }
   }
