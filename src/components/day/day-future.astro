@@ -1,7 +1,29 @@
-<div
-  class="absolute inset-0 z-10 text-xl flex font-semibold backdrop-blur backdrop-grayscale justify-center items-center"
+---
+import Button from "#/button.astro";
+---
+
+<day-future
+  class="absolute inset-0 z-10 text-xl flex flex-col gap-4 font-semibold backdrop-blur backdrop-grayscale justify-center items-center"
 >
   <div class="w-fit bg-white px-4 py-2 shadow-sm border rounded-md">
     Данное занятие еще не началось
   </div>
-</div>
+  <div class="w-fit">
+    <Button>Все равно показать</Button>
+  </div>
+</day-future>
+
+<script>
+  class DayFuture extends HTMLElement {
+    // eslint-disable-next-line prettier/prettier
+    connectedCallback() {
+      this.querySelector("button")?.addEventListener("click", () => {
+        this.style.display = "none";
+      });
+    }
+  }
+
+  if (!customElements.get("day-future")) {
+    customElements.define("day-future", DayFuture);
+  }
+</script>

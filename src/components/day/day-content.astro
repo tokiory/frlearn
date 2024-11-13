@@ -17,11 +17,13 @@ const { class: className, id } = Astro.props;
     className,
   ]}
 >
-  <div class="content__inner h-[240px]">
+  <div
+    class="content__inner transition-all duration-1000 ease-in-out max-h-[240px]"
+  >
     <slot />
   </div>
   <div
-    class="content__control absolute flex justify-center items-end py-8 inset-0 bg-gradient-to-t from-white from-10% to-transparent"
+    class="content__control absolute flex justify-center items-end py-8 inset-0 bg-gradient-to-t from-white from-10% to-transparent transition-transform duration-400 ease-in-out"
   >
     <Button class="mt-8">Посмотреть</Button>
   </div>
@@ -34,17 +36,29 @@ const { class: className, id } = Astro.props;
       const inner = this.querySelector(".content__inner");
       const control = this.querySelector(".content__control");
 
-      const hideControl = () => {
-        control?.classList.add("hidden");
-        inner?.classList.remove("h-[240px]");
+      const hideControl = (immediate = false) => {
+        if (immediate) {
+          control?.classList.add("hidden");
+          inner?.classList.remove("h-[240px]");
+        }
+
+        const animationTime = 200; // ms
+        control?.classList.add("translate-y-full");
+        inner?.classList.remove("max-h-[240px]");
+        inner?.classList.add("max-h-[9999px]");
+
+        const timeoutId = setTimeout(() => {
+          control?.classList.add("hidden");
+          clearTimeout(timeoutId);
+        }, animationTime);
       };
 
       if (inner && inner.children.length < 3) {
-        hideControl();
+        hideControl(true);
       }
 
       const showButton = control?.querySelector("button");
-      showButton?.addEventListener("click", hideControl);
+      showButton?.addEventListener("click", () => hideControl());
     }
   }
 
@@ -60,8 +74,8 @@ const { class: className, id } = Astro.props;
       @apply text-sm subpixel-antialiased;
     }
 
-    :global(:where(p > code)) {
-      @apply text-sm inline-block px-1 py-0.5 bg-stone-100 rounded-md text-amber-700;
+    :global(:where(p > code, li > code)) {
+      @apply text-sm inline-block px-1 py-0.5 bg-stone-100 rounded-md text-amber-700 border;
     }
 
     :global(h1) {
@@ -72,20 +86,24 @@ const { class: className, id } = Astro.props;
       @apply font-medium;
     }
 
-    :global(ol) {
-      @apply pl-2 list-decimal list-inside;
+    :global(ol, ul) {
+      @apply pl-2 flex flex-col gap-1 list-inside;
     }
 
-    :global(ol:not(:first-child)) {
+    :global(ol) {
+      @apply list-decimal;
+    }
+
+    :global(ul) {
+      @apply list-disc;
+    }
+
+    :global(ol:not(:first-child), ul:not(:first-child), p:not(:first-child)) {
       @apply mt-2;
     }
 
     :global(h1:not(:first-child)) {
       @apply mt-6;
-    }
-
-    :global(p:not(:first-child)) {
-      @apply mt-2;
     }
 
     :global(blockquote) {
