@@ -1,0 +1,80 @@
+---
+import Button from "#/button.astro";
+
+interface Props {
+  class?: string;
+  id: string;
+}
+
+const { class: className, id } = Astro.props;
+---
+
+<!-- Maybe we don't need id here and in day.astro (also in useDayCollection) -->
+<day-content
+  data-id={id}
+  class:list={[
+    "my-2 pb-4 pt-4 border-t border-b border-dashed block relative overflow-hidden content",
+    className,
+  ]}
+>
+  <div class="content__inner h-[240px]">
+    <slot />
+  </div>
+  <div
+    class="content__control absolute flex justify-center items-end py-8 inset-0 bg-gradient-to-t from-white from-10% to-transparent"
+  >
+    <Button class="mt-8">Посмотреть</Button>
+  </div>
+</day-content>
+
+<script>
+  class DayContentElement extends HTMLElement {
+    // eslint-disable-next-line prettier/prettier
+    connectedCallback() {
+      const inner = this.querySelector(".content__inner");
+      const control = this.querySelector(".content__control");
+
+      const hideControl = () => {
+        control?.classList.add("hidden");
+        inner?.classList.remove("h-[240px]");
+      };
+
+      if (inner && inner.children.length < 3) {
+        hideControl();
+      }
+
+      const showButton = control?.querySelector("button");
+      showButton?.addEventListener("click", hideControl);
+    }
+  }
+
+  if (!customElements.get("day-content")) {
+    customElements.define("day-content", DayContentElement);
+  }
+</script>
+
+<style>
+  .content {
+    :global(pre) {
+      @apply p-4 mt-2 rounded-md;
+      @apply text-sm subpixel-antialiased;
+    }
+
+    :global(:where(p > code)) {
+      @apply text-sm inline-block px-1 py-0.5 bg-stone-100 rounded-md text-amber-700;
+    }
+
+    :global(h1) {
+      @apply text-2xl md:text-xl font-semibold relative;
+    }
+
+    :global(h1:not(:first-child)) {
+      @apply mt-6;
+    }
+
+    :global(h1::before) {
+      content: "H1";
+      @apply inline-block mr-2 text-base text-stone-400;
+    }
+  }
+</style>

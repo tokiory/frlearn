@@ -11,6 +11,6 @@ export default [
   javascript.configs.recommended,
   ...typescript.configs.recommended,
   ...astro.configs["flat/recommended"],
-  { ignores: ["dist", "src/env.d.ts"] },
+  { ignores: ["dist", "src/env.d.ts", "postcss.config.cjs", ".astro"] },
   prettier,
 ];

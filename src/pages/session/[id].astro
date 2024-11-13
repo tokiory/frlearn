@@ -1,11 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import SessionResources from "@@/session/session-resources.astro";
-import Day from "@@/day/day.astro";
 import Title from "#/title.astro";
-import GoHome from "@@/navigation/go-home.astro";
 import { useDayCollection } from "@/hooks/useDayCollection";
 import { useSessionCollection } from "@/hooks/useSessionCollection";
+import GoHome from "@@/navigation/go-home.astro";
+import Day from "@@/day/day.astro";
+import SessionResources from "@@/session/session-resources.astro";
 
 export async function getStaticPaths() {
   const sessions = await useSessionCollection();
@@ -32,7 +32,7 @@ const { name, description, resources } = Astro.props;
   <div class="flex mt-4 flex-col gap-4">
     {
       days.map(([day, Content]) => (
-        <Day {...day}>
+        <Day {...day.data} id={day.id}>
           <Content />
         </Day>
       ))

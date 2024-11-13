@@ -4,7 +4,7 @@ interface Props {
   class?: string;
 }
 
-const { style = "solid", class: className } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
 <div class:list={["h-[1px] w-full bg-stone-200", className]}></div>

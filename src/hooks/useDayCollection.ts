@@ -1,8 +1,10 @@
-import { getCollection, type RenderResult } from "astro:content";
+import {
+  getCollection,
+  type CollectionEntry,
+  type RenderResult,
+} from "astro:content";
 
-import type { Day } from "@/types/day.types";
-
-type DayPair = [Day, RenderResult["Content"]];
+type DayPair = [CollectionEntry<"day">, RenderResult["Content"]];
 
 export const useDayCollection = async (sessionId: string) => {
   const daysContent = await getCollection("day", ({ data: { session } }) => {
@@ -12,7 +14,7 @@ export const useDayCollection = async (sessionId: string) => {
   return Promise.all(
     daysContent.map(async (day) => {
       const { Content } = await day.render();
-      return [day.data, Content] as DayPair;
+      return [day, Content] as DayPair;
     }),
   );
 };
