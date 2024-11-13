@@ -3,14 +3,14 @@ import Button from "#/button.astro";
 ---
 
 <day-future
-  class="absolute inset-0 z-10 text-xl flex flex-col gap-4 font-semibold backdrop-blur backdrop-grayscale justify-center items-center"
+  class="absolute inset-0 z-10 flex flex-col gap-4 backdrop-blur backdrop-grayscale justify-center items-center"
 >
-  <div class="w-fit bg-white px-4 py-2 shadow-sm border rounded-md">
+  <div
+    class="w-fit text-lg bg-white text-stone-900 px-4 py-2 shadow-md border border-orange-500 rounded-md"
+  >
     Данное занятие еще не началось
   </div>
-  <div class="w-fit">
-    <Button>Все равно показать</Button>
-  </div>
+  <Button>Я любопытный</Button>
 </day-future>
 
 <script>

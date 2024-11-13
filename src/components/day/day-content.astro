@@ -102,6 +102,10 @@ const { class: className, id } = Astro.props;
       @apply mt-2;
     }
 
+    :global(li) {
+      @apply marker:text-orange-600;
+    }
+
     :global(h1:not(:first-child)) {
       @apply mt-6;
     }
