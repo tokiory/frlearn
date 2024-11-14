@@ -1,11 +1,11 @@
 ---
 import { Icon } from "@iconify/react";
+import Button from "#/button.astro";
 ---
 
-<a
-  class="flex gap-1 items-center hover:text-stone-800 transition text-stone-400"
-  href="/"
->
-  <Icon client:load icon="line-md:chevron-left" fontSize="14" />
-  Перейти на главную
+<a class="w-fit -ml-4" href="/">
+  <Button variant="ghost" class="flex gap-1 items-center">
+    <Icon client:load icon="line-md:chevron-left" fontSize="14" />
+    Перейти на главную
+  </Button>
 </a>

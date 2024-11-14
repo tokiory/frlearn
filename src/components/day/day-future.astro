@@ -1,16 +1,30 @@
 ---
 import Button from "#/button.astro";
+import Subtitle from "#/subtitle.astro";
 ---
 
 <day-future
-  class="absolute inset-0 z-10 flex flex-col gap-4 backdrop-blur backdrop-grayscale justify-center items-center"
+  class="absolute overflow-hidden inset-0 z-10 backdrop-blur backdrop-brightness-110 backdrop-grayscale"
 >
+  <!-- <div
+    class="relative overflow-hidden w-full h-full flex justify-center items-center"
+  > -->
+  <div class="relative w-full h-full background"></div>
   <div
+    class="absolute top-1/2 -translate-y-1/2 w-full py-8 flex flex-col items-center justify-center bg-white border-y z-10 text-center"
+  >
+    <Subtitle>Погоди..</Subtitle>
+    <div class="mt-2">
+      Данное занятие еще не началось, не стоит спойлерить себе занятие =')
+    </div>
+    <Button class="text-base mt-4">Я любопытный</Button>
+  </div>
+  <!-- </div> -->
+  <!-- <div
     class="w-fit text-lg bg-white text-stone-900 px-4 py-2 shadow-md border border-orange-500 rounded-md"
   >
     Данное занятие еще не началось
-  </div>
-  <Button>Я любопытный</Button>
+  </div> -->
 </day-future>
 
 <script>
@@ -27,3 +41,14 @@ import Button from "#/button.astro";
     customElements.define("day-future", DayFuture);
   }
 </script>
+
+<style>
+  .background {
+    transform: rotate(-45deg) scale(1.45);
+    @apply absolute;
+    @apply w-[200%] h-[200%];
+    @apply -left-1/2 -top-1/2;
+    background: url("/unavailable.svg") 0 0 repeat;
+    background-size: 480px;
+  }
+</style>
