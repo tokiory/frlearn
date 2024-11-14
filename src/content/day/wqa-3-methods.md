@@ -2,7 +2,6 @@
 session: winter-qa-js
 date: 2024-11-15
 title: "[Day 3] Коллбэки, методы массивов, рекурсия"
-future: true
 references:
   - name: "Дока: Функции"
     url: "https://doka.guide/js/function/"
